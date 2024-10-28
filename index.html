@@ -69,6 +69,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-编码解码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/10/28/%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2024-10-28T04:09:35.649Z" itemprop="datePublished">2024-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h1><h2 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h2><p>是指将明文中所有字母都在字母表上向后或向前按照一个固定数目进行偏移后替换成密文。</p>
+<p>偏移数量是什么时解密时的密钥就是什么（比如当偏移量是左移3时，解密时的密钥就是3）</p>
+<h2 id="培根密码"><a href="#培根密码" class="headerlink" title="培根密码"></a>培根密码</h2><p>本质是将字母用一系列二进制数替换，表示过程中使用a,b来替换0,1形式</p>
+<p>比如</p>
+<p>![0e9a27ba03172f5cc400fe7998ae17f_compres](D:\19426\Pictures\Saved Pictures\b0e9a27ba03172f5cc400fe7998ae17f_compress.jpg)</p>
+<h2 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h2><p>属于移项式密码，为重要概念</p>
+<p>加密过程：</p>
+<p>![ff7b9503d8a5e24e04ae40c302dc83c_compres](D:\19426\Pictures\Saved Pictures\dff7b9503d8a5e24e04ae40c302dc83c_compress.jpg)</p>
+<p>解密过程：</p>
+<p>![14197bb34696cadae92007767c9ffe3_compres](D:\19426\Pictures\Saved Pictures\514197bb34696cadae92007767c9ffe3_compress.jpg)</p>
+<h2 id="base家族"><a href="#base家族" class="headerlink" title="base家族"></a>base家族</h2><h3 id="base-16"><a href="#base-16" class="headerlink" title="base 16"></a>base 16</h3><p>Base 16即十六进制</p>
+<p>它是一种计数系统，使用16个不同的符号来表示数值。在十六进制中，用0 - 9这十个数字和A - F这六个字母来表示0到15的数值。例如，十进制的10在十六进制中表示为A，十进制的15在十六进制中表示为F，十进制的16在十六进制中表示为10。</p>
+<h2 id="base-32"><a href="#base-32" class="headerlink" title="base 32"></a>base 32</h2><p>Base32将任意字符串按照字节进行切分，并将每个字节对应的二进制值（不足8比特高位补0）串联起来，按照5比特一组进行切分，并将每组二进制值转换成十进制来对应32个可打印字符中的一个</p>
+<p> 由于数据的二进制传输是按照8比特一组进行（即一个字节），因此Base32按5比特切分的二进制数据必须是40比特的倍数（5和8的最小公倍数）。</p>
+<p> 流程：给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再根据码表转换</p>
+<p>重新划分：划分时最后不够5的后面先补0，总体不够40比特的倍数的补等号（一个等号就是5bit）</p>
+<p>![ff7b9503d8a5e24e04ae40c302dc83c_compres](D:\19426\Pictures\Saved Pictures\dff7b9503d8a5e24e04ae40c302dc83c_compress.jpg)</p>
+<h3 id="base-58"><a href="#base-58" class="headerlink" title="base 58"></a>base 58</h3><p>Base58是一种计数系统。</p>
+<p>它类似于Base16（十六进制），但Base58有其独特用途。它主要是为了更方便、简洁和安全地表示大整数而设计。</p>
+<p>Base58使用的字符集排除了一些容易混淆的字符，通常使用的字符包括数字0 - 9和大写字母A - Z，以及小写字母a - z，但会去掉数字0、大写字母O、小写字母l和I等，这样可以避免在手写、打印或屏幕显示时产生混淆</p>
+<h3 id="base-64"><a href="#base-64" class="headerlink" title="base 64"></a>base 64</h3><p>Base64是一种基于64个可打印字符来表示二进制数据的编码方式。</p>
+<ol>
+<li>字符集构成</li>
+</ol>
+<ul>
+<li><p>它使用的字符包括大写字母A - Z、小写字母a - z、数字0 - 9，还有两个符号“+”和“&#x2F;”，一共64个字符。另外还有一个“&#x3D;”用于填充，在某些情况下会出现。<br>2.编码原理</p>
+</li>
+<li><p>将3个字节（24位）的数据划分为4组，每组6位。因为2^6 &#x3D; 64，所以这6位可以用Base64字符集中的一个字符来表示。如果要编码的数据字节数不是3的倍数，会在末尾用“&#x3D;”填充。例如，对“ABC”三个字节（每个字节8位）进行编码，首先将这24位划分为4个6位组，然后将每组转换为对应的Base64字符</p>
+<p>![90f1cf657e767e6e3b0d175c981d074_compres](D:\19426\Pictures\Saved Pictures\790f1cf657e767e6e3b0d175c981d074_compress.jpg)</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/10/28/%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/" data-id="cm2si4ytf0000y4v1eoow69b8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-搭建博客的一般步骤及注意事项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/10/27/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
@@ -224,6 +283,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/10/28/%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2024/10/27/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">(no title)</a>
